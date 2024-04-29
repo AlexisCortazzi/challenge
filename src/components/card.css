@@ -1,15 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
 .card-container {
     width: 35%;
     height: 33%;
     min-width: 360px;
-    border: 1px solid grey;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border: 2px solid rgb(0, 183, 255);
     padding: 1rem 1.5rem;
     box-sizing: border-box;
-    border-radius: 1rem;
+    border-radius: 15px;
     text-align: center;
     color: white;
     background-size: cover;
-    background: linear-gradient(to bottom, rgba(134, 230, 247, 0.85), rgba(90, 205, 250, 0.85));
+    background: linear-gradient(90deg, hsla(206, 91%, 66%, 1) 0%, hsla(190, 90%, 51%, 1) 100%); 
 }
 
 .card-location {
@@ -28,31 +38,23 @@
 }
 
 .card-icon {
-    display: 0;
-    margin: 0;
-    width: 90px;
+    width: 180px;
     vertical-align: middle;
 }
 
-.image-container {
-    display: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 70px;
-    width: 70px;
-}
-
 .card-select {
-    padding: 2px 5px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 0.7rem;
-    background-color: #f9f9f9;
-    color: #333;
-    width: 10rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 21px;
+    font-family: system-ui;
+    font-weight: lighter;
+    border: none;
+    border-radius: 15px;
     cursor: pointer;
+    width: 185px;
+    outline: none;
+    padding: 5px;
 }
 
 .card-select option {
@@ -65,39 +67,56 @@
 .card-select option:hover {
     background-color: lightblue;
     color: white;
-  }
+}
 
 .card-temperature {
-    font-family: sans-serif;
+    font-family: system-ui, sans-serif;
+    font-weight: lighter;
     font-size: 5rem;
     color: white;
-    letter-spacing: -2px;
+}
+
+.card-subcontainer{
+    width: 100%;
 }
 
 .body-container {
+    height: 90%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .status-container {
-    text-align: left;
-}
-
-.status-container span {
-    display: block;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.card-time {
     display: flex;
-    margin-top: auto;
+    flex-direction: column;
+    font-family: system-ui, sans-serif;
+    font-size: 18px;
+    font-weight: lighter;
 }
 
 .time-container {
     display: flex;
-    margin-top: auto;
     justify-content: center;
-    height: 50%;
+    font-family: system-ui, sans-serif;
+    font-weight: lighter;
 }
+
+.refresh-icon{
+    width: 30px;
+    cursor: pointer;
+}
+
+.card-countrys{
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+  .arrow-icon{
+    width: 17px;
+    position: absolute;
+    padding-right: 15px;
+    background-color: #ffffff;
+  }
