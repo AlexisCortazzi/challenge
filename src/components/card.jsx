@@ -1,11 +1,19 @@
 import './card.css'
-import backgroundImage from '../sunnyday.jpg'
+import icon01d from '../assest/icons/01d.png'
+import icon02d from '../assest/icons/02d.png'
+import icon03d from '../assest/icons/03d.png'
+import icon04d from '../assest/icons/04d.png'
+import icon09d from '../assest/icons/09d.png'
+import icon10d from '../assest/icons/10d.png'
+import icon11d from '../assest/icons/11d.png'
+import icon13d from '../assest/icons/13d.png'
+import icon50d from '../assest/icons/50d.png'
+import icon01n from '../assest/icons/01n.png'
+import icon02n from '../assest/icons/02n.png'
+import icon10n from '../assest/icons/10n.png'
 
 
-export default function Card({loading, data, setCity}) {
-
-    //console.log(date)
-
+export default function Card({loading, data, setCity, setRefresh}) {
 
     const handleDate = (timezone) => {
         const horaActualUTC = new Date();
@@ -13,24 +21,51 @@ export default function Card({loading, data, setCity}) {
         return horaActualUTC.toUTCString();
       }
 
+      const icons = (icono) => {
+        return ({
+          "01d": icon01d,
+          "02d": icon02d,
+          "03d": icon03d,
+          "04d": icon04d,
+          "09d": icon09d,
+          "10d": icon10d,
+          "11d": icon11d,
+          "13d": icon13d,
+          "50d": icon50d,
+          "01n": icon01n,
+          "02n": icon02n,
+          "03n": icon03d,
+          "04n": icon04d,
+          "09n": icon09d,
+          "10n": icon10n,
+          "11n": icon11d,
+          "13n": icon13d,
+          "50n": icon50d
+        }[icono]) || icono
+      }
+
 
     return (
         <div className="card-container">
             {
                 loading ? <span>Cargando</span> :
-                    data.length < 0 ? <span>No se encontro contenido</span> : 
+                    data === "empty" ? <span>No se encontró contenido</span> : 
                     <>
-                        {/* <div className="card-container" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover" }}> */}
-                        {/* <img className="card-image" src="/Weather-app-using-openweatherapi-React-HTML-CSS/static/media/daycard.d60cce916241fbd70e89.jpg" alt="" /> */}
-                        <span className='card-location'>{data.name}</span>
-                        <select id="opciones" name="opciones" onClick={(event) => setCity(event.target.value)}>
+                        <span className='card-location'>{data.name},</span>
+                        <select className='card-select' id="opciones" name="opciones" onClick={(event) => setCity(event.target.value)}>
                             <option value='Buenos Aires'>Argentina</option>
+                            <option value='Berlin'>Alemania</option>
                             <option value='Bogota'>Colombia</option>
+                            <option value='Madrid'>España</option>
+                            <option value='Paris'>Francia</option>
                             <option value='Moscu'>Rusia</option>
+                            <option value='Londres'>Inglaterra</option>
+                            <option value='Tokio'>Japon</option>
                         </select>
+                        <button onClick={() => setRefresh(prevState => !prevState)}>refresh</button>
                         <div className='body-container'>
                             <div className='temperature-container'>
-                                <span>Icono</span>
+                                <div className='image-container'><img className='card-icon' src={icons(data.weather[0].icon)} alt="Temperatura Actual"/></div>
                                 <span className='card-temperature'>{Math.round(data.main.temp)}°</span>
                             </div>
                             <div className='status-container'>

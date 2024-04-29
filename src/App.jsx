@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
 import Card from './components/card';
@@ -13,18 +12,11 @@ function App() {
   
   const API_KEY = '10f5fc043a0815d3b2db734dd151a90a';
   
-  const [timezone, setTimeZone] = useState(-10800)
   const [city, setCity] = useState('Buenos Aires');
   const [data, setData] = useState()
   const [loading, setLoading] = useState(true)
-  const [backgroundImage, setBackgroundImage] = useState(day)
   const [date, setDate] = useState(new Date())
-  const [hoursarg, setHoursArg] = new Date().toLocaleString('es-CO', 'America/Bogota');
-  // const horaActualUTC = new Date().toUTCString();
-  // const hora = horaActualUTC.setHours(horaActualUTC.getHours() - 5);
-  const horaActualUTC = new Date();
-  horaActualUTC.setUTCHours(horaActualUTC.getUTCHours() - 5);
-  const horaActualUTCFormateadaMenos5 = horaActualUTC.toUTCString();
+  const [refresh, setRefresh] = useState(false)
 
 
   const handleDate = (timezone) => {
@@ -46,35 +38,19 @@ function App() {
         setLoading(false)
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error.message)
+        setData("empty")
+        setLoading(false)
+        alert(error.message)
       })
     }
     fetchData()
-  },[city])
-
-
-
-
- 
-
-  
-  // console.log(data)
-  // console.log(date)
-  // console.log(hoursarg)
-  //console.log(horaActualUTCFormateadaMenos5)
-
-  console.log(new Date(date).getUTCHours())
-  
-  console.log(date)
-
-  
-  
-
+  },[city, refresh])
 
 
   return (
-    <div className="App" style={{ backgroundImage: data ? `url(${date >= 7 && date <= 17 ? day : date > 17 && date <= 20 ? afternoon : night })` : `url(${data})`, backgroundSize: "cover" }}>
-      <Card loading={loading} data={data} setCity={setCity} />
+    <div className="App" style={{ backgroundImage: data ? `url(${date >= 7 && date <= 17 ? day : date > 17 && date <= 20 ? afternoon : night })` : `url(${day})`, backgroundSize: "cover" }}>
+      <Card loading={loading} data={data} setCity={setCity} setRefresh={setRefresh}/>
     </div>
   );
 }
