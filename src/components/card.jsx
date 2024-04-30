@@ -22,7 +22,10 @@ export default function Card({ loading, data, setCity, setRefresh }) {
     const handleDate = (timezone) => {
         const horaActualUTC = new Date();
         horaActualUTC.setUTCHours(horaActualUTC.getUTCHours() + (timezone / 3600));
-        return horaActualUTC.toUTCString();
+        let horario = horaActualUTC.toUTCString();
+        let indiceDosPuntos = horario.lastIndexOf(":");
+        let fechaSinSegundos = horario.substring(0, indiceDosPuntos);
+        return fechaSinSegundos;
     }
 
     //Aqui se realiza la logica para que dependiendo de lo que devuelva la API se decidira que icono se vera en la card.
@@ -53,8 +56,8 @@ export default function Card({ loading, data, setCity, setRefresh }) {
     return (
         <div className="card-container">
             {
-                loading ? <span>Cargando</span> :
-                    data === "empty" ? <span>No se encontró contenido</span> :
+                loading ? <div className='loader-container'><span className='loader'></span></div> :
+                    data === "empty" ? <span className='no-data'>No se encontró contenido</span> :
                         <>
                             <div className='card-subcontainer'>
                                 <div className='card-countrys'>
@@ -85,7 +88,7 @@ export default function Card({ loading, data, setCity, setRefresh }) {
                                 </div>
                             </div>
                             <div className='time-container'>
-                                <span className='card-time'>{handleDate(data.timezone)}</span>
+                                <span className='card-time'>{handleDate(data.timezone)} hs</span>
                             </div>
                         </>
             }

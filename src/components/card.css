@@ -1,4 +1,13 @@
-*{
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+* {
     margin: 0;
     padding: 0;
 }
@@ -19,7 +28,32 @@
     text-align: center;
     color: white;
     background-size: cover;
-    background: linear-gradient(90deg, hsla(206, 91%, 66%, 1) 0%, hsla(190, 90%, 51%, 1) 100%); 
+    background: linear-gradient(90deg, hsla(206, 91%, 66%, 1) 0%, hsla(190, 90%, 51%, 1) 100%);
+}
+
+.loader {
+    border-radius: 50%;
+    display: flex;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 4px solid white;
+    border-bottom-color: transparent;
+}
+
+.loader-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%
+}
+
+.no-data {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%
 }
 
 .card-location {
@@ -55,6 +89,7 @@
     width: 185px;
     outline: none;
     padding: 5px;
+    padding-right: 30px;
 }
 
 .card-select option {
@@ -76,7 +111,7 @@
     color: white;
 }
 
-.card-subcontainer{
+.card-subcontainer {
     width: 100%;
 }
 
@@ -102,21 +137,22 @@
     font-weight: lighter;
 }
 
-.refresh-icon{
+.refresh-icon {
     width: 30px;
     cursor: pointer;
 }
 
-.card-countrys{
+.card-countrys {
     display: flex;
     gap: 12px;
     justify-content: center;
     align-items: center;
 }
 
-  .arrow-icon{
+.arrow-icon {
     width: 17px;
     position: absolute;
     padding-right: 15px;
     background-color: #ffffff;
-  }
+    pointer-events: none;
+}
