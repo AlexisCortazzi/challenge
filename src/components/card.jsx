@@ -57,7 +57,7 @@ export default function Card({ loading, data, setCity, setRefresh }) {
         <div className="card-container">
             {
                 loading ? <div className='loader-container'><span className='loader'></span></div> :
-                    data === "empty" ? <span className='no-data'>No se encontró contenido</span> :
+                    data === "empty" ? <div className='loader-container'><span className='no-data'>No se encontró contenido</span></div> :
                         <>
                             <div className='card-subcontainer'>
                                 <div className='card-countrys'>
