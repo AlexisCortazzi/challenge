@@ -53,7 +53,7 @@ function App() {
 
   //Mostrarmos el componente card pasadonle todas las props que necesita. Tambien en la url se hace una logica para que dependiendo la hora que sea en la ciudad que elijamos el fondo cambie. 
   return (
-    <div className="App" style={{ backgroundImage: data ? `url(${date >= 7 && date <= 17 ? day : date > 17 && date <= 20 ? afternoon : night })` : `url(${day})`, backgroundSize: "cover" }}>
+    <div className="App" style={{ backgroundImage: `url(${day})`, backgroundSize: "cover" }}>
       <Card loading={loading} data={data} setCity={setCity} setRefresh={setRefresh}/>
     </div>
   );
