@@ -2,6 +2,7 @@
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
@@ -14,7 +15,7 @@
 
 .card-container {
     width: 35%;
-    height: 33%;
+    height: auto;
     min-width: 360px;
     display: flex;
     justify-content: space-between;
@@ -77,6 +78,7 @@
 }
 
 .card-select {
+    appearance: none;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -88,7 +90,7 @@
     cursor: pointer;
     width: 185px;
     outline: none;
-    padding: 5px;
+    padding: 5px 5px 5px 10px;
 }
 
 .card-select option {
