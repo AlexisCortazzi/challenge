@@ -10,7 +10,7 @@ import night  from './night.jpg'
 function App() {
 
   
-  //Creamos los estados que van a tener la data y tambien el loader 
+  //Creamos los estados que van a tener la data y también el loader 
   const [city, setCity] = useState('Buenos Aires');
   const [data, setData] = useState()
   const [loading, setLoading] = useState(true)
@@ -19,7 +19,7 @@ function App() {
 
   const API_KEY = '10f5fc043a0815d3b2db734dd151a90a';
 
-  //Funcion que obtiene la hora de la API y la parsea para poder ser utilizada en la logica de cambiar el fondo segun el horario.
+  //Función que obtiene la hora de la API y la parsea para poder ser utilizada en la lógica de cambiar el fondo según el horario.
   const handleDate = (timezone) => {
     const horaActualUTC = new Date();
     horaActualUTC.setUTCHours(horaActualUTC.getUTCHours() + (timezone/3600));
@@ -28,9 +28,9 @@ function App() {
   }
   
   
-  //Useeffect que realiza el fetcher para obtener la informacion de la API y guardarla en diversos estados que luego seran manipulados y mostrados.
+  //Useeffect que realiza el fetcher para obtener la información de la API y guardarla en diversos estados que luego serán manipulados y mostrados.
   //Posee dependencias que a la hora de cambiar de ciudad o refrescar la data se vuelve a hacer el llamado a la API.
-  //Si ocurre un error en la peticion se imprimira un cartel tanto por pantalla como por consola sobre la naturaleza del mismo. 
+  //Si ocurre un error en la petición se imprimirá un cartel tanto por pantalla como por consola sobre la naturaleza del mismo. 
   useEffect(() => {
     const fetchData = async () => {
       await axios
@@ -49,10 +49,12 @@ function App() {
       })
     }
     fetchData()
+    const intervalId = setInterval(fetchData, 60000);
+    return () => clearInterval(intervalId);
   },[city, refresh])
   
 
-  //Mostrarmos el componente card pasadonle todas las props que necesita. Tambien en la url se hace una logica para que dependiendo la hora que sea en la ciudad que elijamos el fondo cambie. 
+  //Mostramos el componente card pasándole todas las props que necesita. También en la url se hace una lógica para que dependiendo la hora que sea en la ciudad que elijamos el fondo cambie. 
   return (
     <div className="App" style={{ backgroundImage: data ? `url(${date >= 7 && date <= 17 ? day : date > 17 && date <= 20 ? afternoon : night })` : `url(${data})`, backgroundSize: "cover" }}>
       <Card loading={loading} data={data} setCity={setCity} setRefresh={setRefresh}/>

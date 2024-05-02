@@ -18,7 +18,7 @@ import arrow from '../assest/icons/arrow.svg'
 
 export default function Card({ loading, data, setCity, setRefresh }) {
 
-    //Funcion que recibe el horario de la API y la parsea a un formato para poder ser mostrada en la card 
+    //Función que recibe el horario de la API y la parsea a un formato para poder ser mostrada en la card. 
     const handleDate = (timezone) => {
         const horaActualUTC = new Date();
         horaActualUTC.setUTCHours(horaActualUTC.getUTCHours() + (timezone / 3600));
@@ -28,7 +28,7 @@ export default function Card({ loading, data, setCity, setRefresh }) {
         return fechaSinSegundos;
     }
 
-    //Aqui se realiza la logica para que dependiendo de lo que devuelva la API se decidira que icono se vera en la card.
+    //Aquí se realiza la lógica para que dependiendo de lo que devuelva la API se decidirá que icono se verá en la card.
     const icons = (icono) => {
         return ({
             "01d": icon01d,
@@ -52,7 +52,7 @@ export default function Card({ loading, data, setCity, setRefresh }) {
         }[icono]) || icono
     }
 
-    //Mostramos la card, si el fetcher aun no termino se exhibira un loader y en caso de que alla un error o que la API devuelva data vacia se mostrara un mensaje.     
+    //Mostramos la card, si el fetcher aún no termino se exhibirá un loader y en caso de que allá un error o que la API devuelva data vacía se mostrara un mensaje.     
     return (
         <div className="card-container">
             {
