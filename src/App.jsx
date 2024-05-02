@@ -49,6 +49,7 @@ function App() {
       })
     }
     fetchData()
+    //Intervalo de un minuto para refrescar la información.
     const intervalId = setInterval(fetchData, 60000);
     return () => clearInterval(intervalId);
   },[city, refresh])
