@@ -1,13 +1,3 @@
-@keyframes rotation {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -105,9 +95,8 @@
     font-weight: bold;
 }
 
-.card-select option:hover {
-    background-color: lightblue;
-    color: white;
+.select-option:hover {
+    background-color: rgb(34, 165, 209);
 }
 
 .select-selected {
@@ -209,7 +198,6 @@
 .rotate-refresh {
     transform: rotate(360deg);
 }
-
 
 .modal-backdrop {
     position: fixed;

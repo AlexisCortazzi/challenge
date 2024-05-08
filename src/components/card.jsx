@@ -90,7 +90,7 @@ export default function Card({ city, refreshing, loading, data, setCity, setRefr
                                                     {options.map((option, index) => (
                                                         <div
                                                             key={index}
-                                                            className={`select-option ${option.value === option.value ? 'selected' : ''}`}
+                                                            className='select-option'
                                                             onClick={() => { setCity(option); setShowOptions(!showOptions) }}
                                                             onClose={() => setShowOptions(false)}
                                                         >
