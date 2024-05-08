@@ -13,10 +13,13 @@ import icon02n from '../assest/icons/02n.png'
 import icon10n from '../assest/icons/10n.png'
 import refresh from '../assest/icons/refresh.svg'
 import arrow from '../assest/icons/arrow.svg'
+import { useState } from 'react'
 
 
 
-export default function Card({ loading, data, setCity, setRefresh }) {
+export default function Card({ city, refreshing, loading, data, setCity, setRefresh }) {
+
+    const [showOptions, setShowOptions] = useState(false)
 
     //Función que recibe el horario de la API y la parsea a un formato para poder ser mostrada en la card. 
     const handleDate = (timezone) => {
@@ -52,6 +55,17 @@ export default function Card({ loading, data, setCity, setRefresh }) {
         }[icono]) || icono
     }
 
+    const options = [
+        { value: 'Buenos Aires', label: 'Argentina' },
+        { value: 'Berlin', label: 'Alemania' },
+        { value: 'Bogota', label: 'Colombia' },
+        { value: 'Madrid', label: 'España' },
+        { value: 'Paris', label: 'Francia' },
+        { value: 'Moscu', label: 'Rusia' },
+        { value: 'Londres', label: 'Inglaterra' },
+        { value: 'Tokio', label: 'Japon' },
+    ];
+
     //Mostramos la card, si el fetcher aún no termino se exhibirá un loader y en caso de que allá un error o que la API devuelva data vacía se mostrara un mensaje.     
     return (
         <div className="card-container">
@@ -62,19 +76,32 @@ export default function Card({ loading, data, setCity, setRefresh }) {
                             <div className='card-subcontainer'>
                                 <div className='card-countrys'>
                                     <div className='card-select'>
-                                        <select className='card-select' id="opciones" name="opciones" onClick={(event) => setCity(event.target.value)}>
-                                            <option value='Buenos Aires'>Argentina</option>
-                                            <option value='Berlin'>Alemania</option>
-                                            <option value='Bogota'>Colombia</option>
-                                            <option value='Madrid'>España</option>
-                                            <option value='Paris'>Francia</option>
-                                            <option value='Moscu'>Rusia</option>
-                                            <option value='Londres'>Inglaterra</option>
-                                            <option value='Tokio'>Japon</option>
-                                        </select>
-                                        <img src={arrow} className='arrow-icon' />
+                                        <div className="select-selected" onClick={() => setShowOptions(!showOptions)}>
+                                            <span>{city.label}</span>
+                                            <img src={arrow} className={!showOptions ? 'arrow-icon' : 'arrow-icon rotate'} />
+                                        </div>
+                                        {showOptions && (
+                                            <>
+                                                <div
+                                                    className="modal-backdrop"
+                                                    onClick={() => setShowOptions(!showOptions)}
+                                                ></div>
+                                                <div className="select-options">
+                                                    {options.map((option, index) => (
+                                                        <div
+                                                            key={index}
+                                                            className={`select-option ${option.value === option.value ? 'selected' : ''}`}
+                                                            onClick={() => { setCity(option); setShowOptions(!showOptions) }}
+                                                            onClose={() => setShowOptions(false)}
+                                                        >
+                                                            {option.label}
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </>
+                                        )}
                                     </div>
-                                    <img src={refresh} onClick={() => setRefresh(prevState => !prevState)} className='refresh-icon' />
+                                    <img src={refresh} onClick={() => setRefresh(prevState => !prevState)} className={!refreshing ? 'refresh-icon' : 'refresh-icon rotate-refresh'} />
                                 </div>
 
                                 <div className='body-container'>
