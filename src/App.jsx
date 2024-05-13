@@ -14,7 +14,7 @@ function App() {
   const [city, setCity] = useState({ value: 'Buenos Aires', label: 'Argentina' });
   const [data, setData] = useState()
   const [loading, setLoading] = useState(true)
-  const [date, setDate] = useState(new Date())
+  const [date, setDate] = useState(day)
   const [refresh, setRefresh] = useState(false)
 
   const API_KEY = '10f5fc043a0815d3b2db734dd151a90a';
@@ -24,7 +24,8 @@ function App() {
     const horaActualUTC = new Date();
     horaActualUTC.setUTCHours(horaActualUTC.getUTCHours() + (timezone/3600));
     horaActualUTC.toUTCString();
-    setDate(new Date(horaActualUTC).getUTCHours())
+    let date = (new Date(horaActualUTC).getUTCHours())
+    setDate(date >= 7 && date <= 17 ? "day" : date > 17 && date <= 20 ? "afternoon" : "night")
   }
   
   
@@ -55,10 +56,10 @@ function App() {
   },[city, refresh])
   
 
-  //Mostramos el componente card pasándole todas las props que necesita. También en la url se hace una lógica para que dependiendo la hora que sea en la ciudad que elijamos el fondo cambie. 
+  //Mostramos el componente card pasándole todas las props que necesita. También en la url se pasa el state date para que dependiendo la hora que sea en la ciudad que elijamos el fondo cambie. 
   return (
-    <div className="App" style={{ backgroundImage: data ? `url(${date >= 7 && date <= 17 ? day : date > 17 && date <= 20 ? afternoon : night })` : `url(${data})`, backgroundSize: "cover" }}>
-      <Card city={city} refreshing={refresh} loading={loading} data={data} setCity={setCity} setRefresh={setRefresh}/>
+    <div className="App" style={{ backgroundImage: date ? `url(${date === "day" ? day : date === "afternoon" ?  afternoon : night})` : `url(${day})`, backgroundSize: "cover" }}>
+      <Card time={date} city={city} refreshing={refresh} loading={loading} data={data} setCity={setCity} setRefresh={setRefresh}/>
     </div>
   );
 }

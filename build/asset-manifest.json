@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/challenge/static/css/main.6814cc97.css",
-    "main.js": "/challenge/static/js/main.54e5d390.js",
+    "main.css": "/challenge/static/css/main.d9ebc813.css",
+    "main.js": "/challenge/static/js/main.79c642bc.js",
     "static/js/453.e30ec4a2.chunk.js": "/challenge/static/js/453.e30ec4a2.chunk.js",
     "static/media/day.jpg": "/challenge/static/media/day.a8cd389528185e5be1b5.jpg",
     "static/media/afternoon.jpg": "/challenge/static/media/afternoon.76791c0d16e8ba5dd224.jpg",
     "static/media/night.jpg": "/challenge/static/media/night.76e0647f56021c889ecb.jpg",
     "static/media/13d.svg": "/challenge/static/media/13d.71f63a5a6a12036484ab0fc6cce2dd6b.svg",
+    "static/media/humidity.svg": "/challenge/static/media/humidity.3951890d47b523f5f85eb45094e7c14c.svg",
     "static/media/10d.svg": "/challenge/static/media/10d.8be4c88c56c90f0d6a26c9857c9861f9.svg",
     "static/media/50d.svg": "/challenge/static/media/50d.05e6d5ef25bcf14f3aeea80d9905ef12.svg",
     "static/media/11d.svg": "/challenge/static/media/11d.fd2de2ea36981b4a2c2634ba144e9f93.svg",
@@ -16,12 +17,12 @@
     "static/media/refresh.svg": "/challenge/static/media/refresh.d99444b52342a136fed65a7b2f8c04e2.svg",
     "static/media/03d.svg": "/challenge/static/media/03d.0d2d090913fd66ee343ca69cef8d02b7.svg",
     "static/media/arrow.svg": "/challenge/static/media/arrow.ddd5a76cd585d443ff3e037d719e5491.svg",
-    "main.6814cc97.css.map": "/challenge/static/css/main.6814cc97.css.map",
-    "main.54e5d390.js.map": "/challenge/static/js/main.54e5d390.js.map",
+    "main.d9ebc813.css.map": "/challenge/static/css/main.d9ebc813.css.map",
+    "main.79c642bc.js.map": "/challenge/static/js/main.79c642bc.js.map",
     "453.e30ec4a2.chunk.js.map": "/challenge/static/js/453.e30ec4a2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6814cc97.css",
-    "static/js/main.54e5d390.js"
+    "static/css/main.d9ebc813.css",
+    "static/js/main.79c642bc.js"
   ]
 }

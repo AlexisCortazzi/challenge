@@ -11,13 +11,14 @@ import icon50d from '../assest/icons/50d.svg'
 import icon01n from '../assest/icons/01n.svg'
 import icon02n from '../assest/icons/02n.png'
 import icon10n from '../assest/icons/10n.png'
+import humidity from '../assest/icons/humidity.svg'
 import refresh from '../assest/icons/refresh.svg'
 import arrow from '../assest/icons/arrow.svg'
 import { useState } from 'react'
 
 
 
-export default function Card({ city, refreshing, loading, data, setCity, setRefresh }) {
+export default function Card({ time, city, refreshing, loading, data, setCity, setRefresh }) {
 
     const [showOptions, setShowOptions] = useState(false)
 
@@ -66,9 +67,10 @@ export default function Card({ city, refreshing, loading, data, setCity, setRefr
         { value: 'Tokio', label: 'Japon' },
     ];
 
-    //Mostramos la card, si el fetcher aún no termino se exhibirá un loader y en caso de que allá un error o que la API devuelva data vacía se mostrara un mensaje.     
+    //Mostramos la card, si el fetcher aún no termino se exhibirá un loader y en caso de que allá un error o que la API devuelva data vacía se mostrara un mensaje.
+    //La propiedad time utilizada en las classNames card-container y select-options son para cambiar los estilos de la card dependiendo el horario de la ciudad que se seleccionó.     
     return (
-        <div className="card-container">
+        <div className={`card-container ${time}`}>
             {
                 loading ? <div className='loader-container'><span className='loader'></span></div> :
                     data === "empty" ? <div className='loader-container'><span className='no-data'>No se encontró contenido</span></div> :
@@ -86,7 +88,7 @@ export default function Card({ city, refreshing, loading, data, setCity, setRefr
                                                     className="modal-backdrop"
                                                     onClick={() => setShowOptions(!showOptions)}
                                                 ></div>
-                                                <div className="select-options">
+                                                <div className={`select-options ${time}`}>
                                                     {options.map((option, index) => (
                                                         <div
                                                             key={index}
@@ -103,7 +105,6 @@ export default function Card({ city, refreshing, loading, data, setCity, setRefr
                                     </div>
                                     <img src={refresh} onClick={() => setRefresh(prevState => !prevState)} className={!refreshing ? 'refresh-icon' : 'refresh-icon rotate-refresh'} />
                                 </div>
-
                                 <div className='body-container'>
                                     <img className='card-icon' src={icons(data.weather[0].icon)} alt="Temperatura Actual" />
                                     <div className='status-container'>
@@ -112,6 +113,22 @@ export default function Card({ city, refreshing, loading, data, setCity, setRefr
                                         <span>{data.name}</span>
                                         <span>Sensación térmica: {Math.round(data.main.feels_like)}°</span>
                                     </div>
+                                </div>
+                            </div>
+                            <div className='data-container'>
+                                <div>
+                                    <span>Max: {Math.round(data.main.temp_max)}°</span>
+                                </div>
+                                <div>
+                                    <span>Min: {Math.round(data.main.temp_min)}°</span>
+                                </div>
+                                <div className='wind-container'>
+                                    <img className='wind-icon' src={humidity} alt="Viento Actual" />
+                                    <span>{data.main.humidity} %</span>
+                                </div>
+                                <div className='humidity-cotainer'>
+                                    <img className='wind-icon' src={icon50d} alt="Humedad Actual" />
+                                    <span>{Math.round(data.wind.speed * 3.6)} Km/h</span>
                                 </div>
                             </div>
                             <div className='time-container'>

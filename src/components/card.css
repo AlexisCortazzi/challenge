@@ -24,6 +24,26 @@
     background: linear-gradient(90deg, hsla(206, 91%, 66%, 1) 0%, hsla(190, 90%, 51%, 1) 100%);
 }
 
+.night {
+    background: rgb(67, 60, 185);
+    background: linear-gradient(90deg, rgba(67, 60, 185, 1) 0%, rgba(43, 43, 228, 1) 52%, rgba(16, 35, 138, 1) 100%);
+    border-color: rgb(58, 52, 160);
+}
+
+.night .select-option:hover {
+    background-color: rgb(14, 30, 117);
+}
+
+.afternoon {
+    background: rgb(255, 164, 0);
+    background: linear-gradient(0deg, rgba(235, 151, 0, 1) 0%, rgba(255, 170, 50, 1) 50%, rgba(255, 119, 0, 1) 100%);
+    border-color: rgb(189, 89, 2);
+}
+
+.afternoon .select-option:hover {
+    background-color: rgb(179, 84, 2);
+}
+
 .loader {
     border-radius: 50%;
     display: flex;
@@ -160,7 +180,7 @@
     font-weight: lighter;
 }
 
-.status-container span{
+.status-container span {
     font-weight: 400;
 }
 
@@ -211,4 +231,26 @@
     align-items: center;
     z-index: 2;
     cursor: auto;
-  }
+}
+
+.data-container {
+    display: flex;
+    width: auto;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.data-container div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(85, 85, 85, 0.25);
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.wind-icon {
+    width: 20px;
+    margin-right: 0.3rem;
+}
